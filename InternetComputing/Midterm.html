@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="midterm-notes">Midterm notes</h2>
+<ul>
+<li>
+<p>HTML -&gt; HTML + CSS -&gt; XML -&gt; XHTML -&gt; ... -&gt; HTML 5</p>
+<ul>
+<li>dropped the <code>X</code></li>
+<li>tags are objects with attributes</li>
+</ul>
+</li>
+<li>
+<p>watch out for closing tags, case sensitive tags, unescaped strings</p>
+</li>
+<li>
+<p><code>dl -&gt; dt -&gt; dd</code></p>
+</li>
+<li>
+<p>id for relative links</p>
+</li>
+<li>
+<p><code>prompt</code></p>
+</li>
+</ul>
+<p>Events</p>
+<ul>
+<li>string escaping for <code>&quot;alert('escaped')&quot;</code></li>
+<li><code>Math.Random()</code> -&gt; [0,1)</li>
+<li>JS -&gt; not graphics library and OO language \shrug</li>
+</ul>
+<p>DOM -&gt; tree</p>
+<p><code>setTimeOut(&quot;afsadasd()&quot;, 1000)</code> &lt;- note the quotation mark around function</p>
+<ul>
+<li>
+<p>document.images/applets/links are arrays of DOM</p>
+</li>
+<li>
+<p><code>span</code> for inline shit</p>
+</li>
+<li>
+<p>tables sucks, inefficient need to load everything</p>
+</li>
+</ul>
+<p><code>&lt;map&gt;</code> and <code>&lt;area&gt;</code> define the area within which a click will call a JavaScript function or jump a link</p>
+<ul>
+<li>
+<p><code>area</code> has <code>href</code></p>
+</li>
+<li>
+<p>img needs <code>usemap=&quot;#website_overview&quot;</code></p>
+</li>
+<li>
+<p><code>onkeydown</code> -&gt; <code>key_event.keyCode</code></p>
+</li>
+<li>
+<p><code>.innerHTML</code> changes the text of something</p>
+</li>
+<li>
+<p><code>.src</code> to change image for img</p>
+</li>
+<li>
+<p>embeded play media via plugin, better to use JS</p>
+</li>
+</ul>
+<p>CSS can be used for all XML based languages</p>
+<ul>
+<li><code>:hover</code> etc are called Pseudo classes</li>
+<li><code>FIRST-LETTER</code> and <code>FIRST-LINE</code> ??</li>
+</ul>
+<p>priorities (cascading)</p>
+<ol>
+<li>Inline styles: style attribute included within a tag</li>
+<li>Embedded style: CSS rules inside the HTML itself</li>
+<li>External style sheets: CSS files referenced from the HTML itself</li>
+<li>User style: Local CSS file specified by the user on the browser</li>
+<li>User agent style: browser’s default style sheet</li>
+</ol>
+<p>JQuery: lib for DOM manipulation</p>
+<ul>
+<li>need to initialize</li>
+</ul>
+<p>CSS</p>
+<ul>
+<li><code>Immediate Sibling Selector: +</code>, same parent, immeidate next</li>
+<li><code>Next Sibling Selector: ~</code> same parent</li>
+</ul>
+<p>The World Wide Web Consortium (W3C)</p>
+<h2 id="svg">Svg</h2>
+<ul>
+<li>coord start from top left corner</li>
+<li>polygon: <code>x,y x,y ...</code>
+<ul>
+<li>polyline: just line, not connected</li>
+</ul>
+</li>
+<li><code>image</code> -&gt; <code>xlink:href=&quot;hong_kong.jpg&quot;</code></li>
+</ul>
+<p>Path</p>
+<ul>
+<li>M = move to</li>
+<li>L = draw a straight line to</li>
+<li>H = draw a horizontal line to</li>
+<li>V = draw a vertical line to</li>
+<li>C = draw a curve to (uses a cubic Bezier)</li>
+<li>A = draw an arc to</li>
+<li>Z = finish/ go back to the beginning</li>
+</ul>
+<p>Note: all path <code>d</code> value are based on absolute position</p>
+<p><code>Q</code> -&gt; Quadratic Bezier curve</p>
+<ul>
+<li><code>Q control,point end,point T,implicit</code></li>
+</ul>
+<p>can apply style just like html</p>
+<ul>
+<li>color -&gt; fill</li>
+</ul>
+<p>in <code>&lt;defs&gt;&lt;g id=&quot;id&quot;&gt;...</code> you can reuse it later</p>
+<ul>
+<li><code>&lt;use id=&quot;&quot; xlink:href=&quot;#id&quot;&gt;</code></li>
+<li>define <code>pattern</code> <code>clip-path</code></li>
+</ul>
+<p>Transform:</p>
+<ul>
+<li>translate, rotate, scale
+<ul>
+<li>rotate default is 0,0</li>
+</ul>
+</li>
+<li>matrix (do all operations, individually or at same time)</li>
+<li>operations performed from right to left!</li>
+</ul>
+<p>Animations</p>
+<ul>
+<li>animate
+<ul>
+<li>formatting any attribute</li>
+</ul>
+</li>
+<li>animateColor</li>
+<li>animateMotion
+<ul>
+<li>animating object in motion path</li>
+</ul>
+</li>
+<li>animateTransform
+<ul>
+<li>changing transformation;</li>
+</ul>
+</li>
+<li>attributeType specifies XML or CSS</li>
+</ul>
+<p>Matrices</p>
+<ul>
+<li>more efficient</li>
+<li>Initial Viewport -&gt; outermost SVG or initial coordinate system</li>
+<li>transform coordinate system for all defined inside it</li>
+</ul>
+<p>Current Transformation Matrix = all transformation you want to apply multiplied together</p>
+<p>CSS review</p>
+<ul>
+<li><code>.style.jsStyle = value</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">"circle"</span>)[<span class="hljs-number">0</span>].parentNode.removeChild(<span class="hljs-built_in">document</span>.getElementsBy
+TagName(<span class="hljs-string">"circle"</span>)[<span class="hljs-number">0</span>]);
+</div></code></pre>
+
+    </body>
+    </html>

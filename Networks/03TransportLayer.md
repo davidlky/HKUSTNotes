@@ -34,7 +34,7 @@ Connection-less De-Multiplexing (UDP)
 - when host receives UDP segment, check port # and direct
   - same dest + port # but different source will be directed to same socket
 
-Connection based Demux (TCP)
+Connection based Demux (TCP) - Transmission Control Protocol
 - 4 tuples (source/dest ip/port)
 - use all 4 values
 - web servers have different sockets for each connecting client

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="chapter-2-application-layer">Chapter 2, Application Layer</h2>
+<ul>
+<li>Network Apps: email, web, text messaging, VoIP, P2P file sharing, gaming etc.</li>
+</ul>
+<p>Network App:</p>
+<ul>
+<li>run on different end systems, communicate cross network</li>
+<li>No need to write network core software, they don't run anything, this way end systems handle everything</li>
+<li>P2P vs Client-Server</li>
+</ul>
+<p>Client-Server Arch</p>
+<ul>
+<li>Server permanent IP address, always expected to be up</li>
+<li>Client talk to server, connected periodically, dynamic IP, do not talk to each other</li>
+</ul>
+<p>P2P</p>
+<ul>
+<li>No always on server</li>
+<li>end systems talk to each other, request from each other, self scaling</li>
+<li>Need to manage each other's IP changes</li>
+</ul>
+<p>Process Communication</p>
+<ul>
+<li>process: program running within host
+<ul>
+<li>inter-process communication via OS</li>
+</ul>
+</li>
+<li>server: wait for messages, client: send messages (this is similar in concept with P2P)</li>
+</ul>
+<p>Socket</p>
+<ul>
+<li>process send and receives messages from sockets</li>
+<li>transport infra to deliver message to socket at other process</li>
+<li>processes will have id: unique 32 bit IP address
+<ul>
+<li>also needs processes' ID (many process on same host)</li>
+</ul>
+</li>
+<li>port number will specify the process
+<ul>
+<li>HTTP: 80</li>
+<li>Mail: 25</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+<p>Application layer controlled by developer, everything controlled by OS, communicated via Socket</p>
+<ul>
+<li>Defines: type of messages, syntax, semantics, rules</li>
+<li>Open protocols defined in RFCs (HTTP, SMTP)</li>
+<li>also has proprietary protocols (Skype)</li>
+</ul>
+<p>Transport service</p>
+<ul>
+<li>data integrity: 100% reliability at times
+<ul>
+<li>some tolerate loss (audio)</li>
+</ul>
+</li>
+<li>timing: low delay</li>
+<li>throughput: minimum amount</li>
+<li>security</li>
+</ul>
+<p>Internet Transport protocols</p>
+<ul>
+<li>TCP: reliable
+<ul>
+<li>flow, congestion control</li>
+<li>Does not guarantee timing, minimum throughput</li>
+<li>connection oriented, setup required (handshaking)</li>
+</ul>
+</li>
+<li>UDP
+<ul>
+<li>unreliable data transfer</li>
+</ul>
+</li>
+</ul>
+<p>Securing TCP</p>
+<ul>
+<li>neither offer encryption, so that needs to be done in Application Layer
+<ul>
+<li>Apps uses SSL libraries that talk to TCP</li>
+<li>end-point authentication</li>
+<li>passwords etc can be sent encrypted</li>
+</ul>
+</li>
+</ul>
+<h2 id="web-and-http">Web and HTTP</h2>
+<p>webpage has a html file, then many objects</p>
+<p>HTTP: Hypertext Transfer Protocol</p>
+<ul>
+<li>follow client server protocol</li>
+<li>uses TCP
+<ol>
+<li>initiates connection (create socket to server, 80)</li>
+<li>server accepts connection</li>
+<li>HTTP message sent</li>
+<li>TCP closed</li>
+</ol>
+</li>
+<li>HTTP is stateless (no idea about prev requests)
+<ul>
+<li>stateful protocols are hard to maintain, esp when server/client crashes</li>
+</ul>
+</li>
+</ul>
+<p>Connections</p>
+<ul>
+<li>non-persistent HTTP
+<ul>
+<li>at most 1 object sent over TCP, then connection closes</li>
+</ul>
+<pre><code><establish initial connection>
+<send/receive http request>
+<close connection>
+^repeat for all objects
+</code></pre>
+<ul>
+<li>RTT = time for a small packet to travel back and forth</li>
+<li>HTTP response time: 1 RTT for initial connection, 1 RTT for http request + file transmission (2RTT + file)</li>
+<li>browser might open multiple connections for referenced objects</li>
+</ul>
+</li>
+<li>persistent HTTP
+<ul>
+<li>multiple object sent over single TCP connection</li>
+<li>server leaves connection open after response, subsequent message from the open connection, sends request as soon as it see a referenced object, 1 RTT for all referenced object</li>
+</ul>
+</li>
+</ul>
+<p>HTTP request message</p>
+<ul>
+<li>request vs response</li>
+<li>request line, then header, then carriage return (ending header lines), then rest of everything
+<ul>
+<li><code>\r</code> -&gt; carriage return character</li>
+<li><code>\n</code> -&gt; line feed character</li>
+</ul>
+</li>
+<li>Request form
+<img src="file:///Users/davidliu/Documents/Year%204/Notes/images/1.png" alt="alt text"></li>
+<li>Uploading Input
+<ul>
+<li>POST method, including form input, in entity body</li>
+<li>URL method, put it in request line</li>
+<li>HTML 1.0 -&gt; GET/POST/HEAD(leave object out of response)</li>
+<li>HTML 1.1 -&gt; 1.0 + PUT (upload file to specified in URL field) and DELETE</li>
+</ul>
+</li>
+</ul>
+<p>HTTP response</p>
+<ul>
+<li>status line, then header line, then data</li>
+<li><code>HTTP/1.1, 200 OK\r\n</code></li>
+<li>Status code:
+<ul>
+<li>200 -&gt; OK</li>
+<li>302 -&gt; Moved Permanently</li>
+<li>400 -&gt; Bad Request</li>
+<li>404 -&gt; Not Found</li>
+<li>505 -&gt; HTTP version not supported</li>
+</ul>
+</li>
+</ul>
+<p>User-server state: cookies</p>
+<ul>
+<li>keep track of user and state (create unique ID, entry backend to link with ID)</li>
+<li>4 parts
+<ul>
+<li>cookie header line of response message</li>
+<li>cookie header line in next request</li>
+<li>cookie file kept in user's host (managed by browser)</li>
+<li>back-end database at website keeping track of the cookie's ID</li>
+</ul>
+</li>
+</ul>
+<p>Cookies usefulness</p>
+<ul>
+<li>auth, state, recommendation, sessions</li>
+<li>cookies permit sites to learn a lot about you</li>
+</ul>
+<p>Web Caches</p>
+<ul>
+<li>satisfy client without going to server
+<ul>
+<li>web accesses via cache, if exist in cache return, else fetch, cache then return</li>
+</ul>
+</li>
+<li>acts as both client and server
+<ul>
+<li>installed by ISP to save traffic and time (allow for poor content providers to still deliver, like P2P)</li>
+</ul>
+</li>
+<li>Total delay = internet delay + access delay + lan delay
+<ul>
+<li>access delay would be high if the access link usage to public internet is large</li>
+</ul>
+</li>
+<li>increasing access link is not cheap and not easy
+<ul>
+<li>use cache</li>
+</ul>
+</li>
+</ul>
+<p>Conditional Get</p>
+<ul>
+<li>dont send object if object not updated (If-Modified-Since), no object transmission
+<ul>
+<li>cache specify the date</li>
+<li>if modified, then return the new object and status 200</li>
+<li>if not modified since then, then return <code>304 Not Modified</code> and no data</li>
+</ul>
+</li>
+</ul>
+<p>Electronic Mail</p>
+<ul>
+<li>3 major components
+<ul>
+<li>User Agents</li>
+<li>Mail Server</li>
+<li>Simple Mail Transfer Protocol (SMTP)
+<ul>
+<li>transfer between mail server</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>User Agent
+<ul>
+<li>&quot;mail reader&quot;</li>
+<li>compose, editing, reading etc. (mail clients)</li>
+</ul>
+</li>
+<li>Mail Server
+<ul>
+<li>mailbox containing incoming messages for user</li>
+<li>queue for outgoing messages</li>
+<li>SMTP protocol between servers to send messages (acts as both client and server)</li>
+</ul>
+</li>
+<li>SMTP (RFC 2821)
+<ul>
+<li>TCP to reliably transfer email message from client to server: port <code>25</code></li>
+<li>direct transfer, server to server</li>
+<li>3 phases: handshaking -&gt; transfer -&gt; closure</li>
+<li>messages must be 7bit ASCI</li>
+<li>command and response (like http request and response)</li>
+</ul>
+</li>
+</ul>
+<p>Process</p>
+<ul>
+<li>send message from UA to own server, then becomes queue</li>
+<li>open connection via TCP, sends message over TCP agent to other server</li>
+<li>open via UA</li>
+</ul>
+<p>Final words with SMTP</p>
+<ul>
+<li>SMTP uses persistent connections</li>
+<li>request message to be in 7bit ASCI (instead of ASCII)</li>
+<li>CRLF.CRLF for end of message</li>
+<li>HTTP uses pull, SMTP uses push</li>
+<li>both have ASCII command/response interaction + status</li>
+<li>SMTP: multiple object in multipart message</li>
+</ul>
+<p>Mail message format</p>
+<ul>
+<li>has Header with To, From, subject that is diff than the SMTP commands</li>
+<li>has body, which is the actual message</li>
+</ul>
+<p>SMTP: delivery/storage to server</p>
+<p>Access protocol</p>
+<ul>
+<li>POP (Post Office Protocol RFC 1939): auth and download</li>
+<li>IMAP: Internet Mail Access Protocol (1730): more features, including manipulation of stored messages on server</li>
+<li>HTTP as well</li>
+</ul>
+<p>POP3 protocol</p>
+<ul>
+<li>authorization phase: user and password</li>
+<li>transaction phase</li>
+<li>download and delete mode, downloads copy to local, cannot re-read mail if change client
+<ul>
+<li>copies across different client, stateless across sessions</li>
+</ul>
+</li>
+</ul>
+<p>IMAP</p>
+<ul>
+<li>keep messages in one place - servr</li>
+<li>allow user to organize in folter</li>
+<li>keep user state (name of folder and mappings)</li>
+</ul>
+<h2 id="dns">DNS</h2>
+<p>DNS - domain name system</p>
+<ul>
+<li>people have many ID, internet host have many IP address (UID) and name (<a href="http://yahoo.com">yahoo.com</a>)</li>
+<li>DNS: distributed database, hierarchy of name servers</li>
+<li>Application Layer Protocol: hosts, NS to communicate to resolve names
+<ul>
+<li>complexity at network edge</li>
+</ul>
+</li>
+<li>DNS service: hostname to IP translation
+<ul>
+<li>host aliasing: canonical and alias name</li>
+<li>mail servers, load distribution</li>
+</ul>
+</li>
+<li>Cannot be centralized obv.</li>
+<li>Root DNS to other types of domain, then to more specific ones
+<ul>
+<li>from <code>.com</code> to domain to alias</li>
+</ul>
+</li>
+</ul>
+<p>Root Name Servers</p>
+<ul>
+<li>contacted by name servers that cannot resolve name
+<ul>
+<li>contacts authoritative servers if not known to get mapping, return mapping</li>
+</ul>
+</li>
+</ul>
+<p>TLD</p>
+<ul>
+<li>responsible for <code>com</code>, <code>org</code> etc.</li>
+</ul>
+<p>Authoritative DNS</p>
+<ul>
+<li>Organization's own DNS server providing hostname to IP mappings for named hosts</li>
+<li>maintained by organization</li>
+</ul>
+<p>Local DNS</p>
+<ul>
+<li>each ISP has one, default name server</li>
+<li>when host make query, it is send to local one first (acts as proxy/cache)</li>
+</ul>
+<p>Resolution:</p>
+<ul>
+<li>iterative: go to each one at a time</li>
+<li>recursive: put resolution on contacted server, they will keep reaching to other (heavy load at higher level of hierarchy)</li>
+</ul>
+<p>Caching, updating records</p>
+<ul>
+<li>once any NS learn mapping it caches the mapping
+<ul>
+<li>cache entry disappear after TTL</li>
+<li>TLD servers are usually cached here (so root NS not visited)</li>
+</ul>
+</li>
+<li>cached entries may be out of date (best effort name ot address)
+<ul>
+<li>sometimes needs to wait till all TTL expire)</li>
+</ul>
+</li>
+<li>RFC 2136 - global update/notify arch</li>
+</ul>
+<p>DNS: distributed DB storing resource records (RR)</p>
+<ul>
+<li>name, value, type, ttl</li>
+<li>type:
+<ul>
+<li>A -&gt; name is host name, value is IP</li>
+<li>NS -&gt; name is domain, value is hostname of authoritative name server for domain</li>
+<li>CNAME -&gt; name is alias, value is canonical name</li>
+<li>MX -&gt; value is the mailserver associated with name</li>
+</ul>
+</li>
+</ul>
+<p>DNS protocol, messages</p>
+<ul>
+<li>query and reply messages, both with same message format
+<ul>
+<li>header: 16 bit for query, reply</li>
+<li>flags for another 16 bit
+<ul>
+<li>specify query or reply, recursion avail, is it authoritative
+<img src="file:///Users/davidliu/Documents/Year%204/Notes/Networks/images/2.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Inserting records into DNS</p>
+<ul>
+<li>register at DNS registrar
+<ul>
+<li>insert 2 RR into TLD server</li>
+<li>create type A and MX for website</li>
+</ul>
+</li>
+</ul>
+<p>Attacking DNS</p>
+<ul>
+<li>DDoS, not successful, often filtered, caches allowing root server to by pass (TLD not taken down, server still get fucked)
+<ul>
+<li>bombard TLD server = death</li>
+</ul>
+</li>
+<li>redirect attacks
+<ul>
+<li>man in the middle, intercept queries</li>
+<li>DNS poisoning, send bogus replies to DNS, which caches it</li>
+</ul>
+</li>
+<li>exploit DNS for DDoS
+<ul>
+<li>send query with spoofed source address</li>
+</ul>
+</li>
+</ul>
+<h2 id="p2p">P2P</h2>
+<p>Pure P2P</p>
+<ul>
+<li>no always on server</li>
+<li>end system will communicate directly, peers are randomly connected and changes IP address
+<ul>
+<li>Bit Torrent</li>
+<li>VOIP</li>
+<li>Streaming</li>
+</ul>
+</li>
+</ul>
+<p>File distribution</p>
+<ul>
+<li>peer upload/download is limited resources
+<ul>
+<li>increases linearly with number of files downloaded for server-client (N as in number of clients)</li>
+</ul>
+</li>
+<li>P2P
+<ul>
+<li>send one file down at least, then each client will download file copy</li>
+<li>the each lien will download a copy, and aggregate must download NF bits, but that increases too as there's more people hosting file</li>
+</ul>
+</li>
+<li>linear vs log</li>
+</ul>
+<p>Napster</p>
+<ul>
+<li>160k simultaneous online user at peak</li>
+<li>Centralized directory, once connected, post all available MP3</li>
+<li>select what to download from peer</li>
+<li>Efficient from centralized, but single point of failure and bottle-necked behavior</li>
+<li>Have an index server (centralized)</li>
+</ul>
+<p>Gnutella</p>
+<ul>
+<li>made by AOL, but then did not scale up properly</li>
+<li>fully decentralized</li>
+<li>some bootstrapping server to keep some peer nodes, new node contact bootstrapping server and a list of peer then is given</li>
+<li>would give response via graph search, inefficient</li>
+<li>but more robust and no server needed</li>
+</ul>
+<p>KaZaA: Hybrid</p>
+<ul>
+<li>decentralized centralized clusters, sacrifice anonymity for efficiency</li>
+<li>each node is either super-node or assigned to one</li>
+<li>each super-node knows other ones</li>
+<li>&quot;Super-peer&quot; P2P system (super index servers)</li>
+</ul>
+<p>BitTorrent</p>
+<ul>
+<li>files divided into 256kb chunks, peer in torrent share chunks with each other</li>
+<li>tracker: track peers participating in torrent</li>
+<li>torrent: group of peers exchanging chunks of file</li>
+<li>peer joining torrent, has no chunk but will accumulate over time from other peers
+<ul>
+<li>register with tracker, connect to some peers</li>
+</ul>
+</li>
+<li>churn: come and go</li>
+<li>requesting chunks:
+<ul>
+<li>each peer have a different subset of chunks, ask for list and request chunks on rarest first basis</li>
+</ul>
+</li>
+<li>sending chunks: tit-for-tat
+<ul>
+<li>send chunks to those 4 peers that sendsto her at highest rate</li>
+<li>others are chocked (re-evaluate 4/10 seconds)</li>
+<li>30 second: randomly add a new peer, start sending chunks (optimistically unchoke)</li>
+</ul>
+</li>
+<li>tit for tat
+<ul>
+<li>highest trading partner will stay</li>
+</ul>
+</li>
+</ul>
+<p>DHT (Distributed Hash Table)</p>
+<ul>
+<li>distributed P2P database</li>
+<li>distribute table over millions of peers
+<ul>
+<li>peer queries each other with key</li>
+<li>convert each key to an integer, assign integer to each peer, then put the KVP in the peer with the closest integer</li>
+</ul>
+</li>
+<li>closest = immediate successor (wrap around)
+<ul>
+<li>peer only aware of successor and predecessor (overlay network)</li>
+<li>will go in circular fashion, with some shortcuts</li>
+<li>O(logN)</li>
+</ul>
+</li>
+</ul>
+<p>Handling Churn</p>
+<ul>
+<li>periodically ping for successor, keep track of 2 successor</li>
+</ul>
+<h3 id="cdn-content-distribution-network">CDN (Content Distribution Network)</h3>
+<p>Video streaming and content distribution networks</p>
+<ul>
+<li>since video streaming takes a lot of bandwidth, single server will not work</li>
+<li>solution: distributed, application-level infra</li>
+<li>Video
+<ul>
+<li>sequence of image at constant rate</li>
+<li>spacial coding (lower # bit sent per image)</li>
+<li>temporal (one to the next)</li>
+</ul>
+</li>
+<li>CBR: constant bit rate
+<ul>
+<li>encoding is fixed</li>
+</ul>
+</li>
+<li>VBR: variable
+<ul>
+<li>video encoding rate changes as spacial and temporal coding changes</li>
+</ul>
+</li>
+</ul>
+<p>DASH</p>
+<ul>
+<li>Dynamic Adaptive Streaming over HTTP</li>
+<li>Server: divide video into chunks, each stored and encoded at different rates
+<ul>
+<li>manifest file: URL for different chunks</li>
+</ul>
+</li>
+<li>client
+<ul>
+<li>periodically measure bandwidth</li>
+<li>consult manifest and request 1 chunk at a time
+<ul>
+<li>choose max coding rate for bandwidth, can switch over time.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Client is intelligent
+<ul>
+<li>decide when to get chunk, at what encoding rate and where to request</li>
+</ul>
+</li>
+</ul>
+<p>CDN</p>
+<ul>
+<li>1 server does not scale, long path, congestion and 1 point of failure</li>
+<li>store multiple copies at different locations
+<ul>
+<li>enter deep: push deep into access network</li>
+<li>bring home: small number of large clusters in POPs near access networks</li>
+</ul>
+</li>
+<li>subscriber request contents from CDNs
+<ul>
+<li>multiple of these everywhere</li>
+</ul>
+</li>
+<li>Over the Top (OTT)
+<ul>
+<li>from which CDN to take, what behavior for congestion, what content in each one</li>
+</ul>
+</li>
+<li>needs to resolve at least one more authoritative DNS for the CDN network</li>
+</ul>
+<h2 id="socket-programming">Socket Programming</h2>
+<p>socket: door between application process and end-to-end protocol (transport layer)</p>
+<ul>
+<li>UDP
+<ul>
+<li>no &quot;connection&quot; between client and server</li>
+<li>no handshake, just attaches to address + port and leave whenever</li>
+<li>can be out of order, unreliable</li>
+</ul>
+</li>
+<li>TCP
+<ul>
+<li>must contact server (server must be running and have door)</li>
+<li>TCP creates a new socket for server to communicate with that client
+<ul>
+<li>after attaching to port</li>
+<li>both side needs to close the socket</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="summary-notes">Summary Notes</h2>
+<ul>
+<li>Application Layer Protocols
+<ul>
+<li>focus on only communication (only the protocols)</li>
+<li>not the whole layer</li>
+</ul>
+</li>
+<li>port number determine processes
+<ul>
+<li>4 tuple (2 diff ip, 2 diff ports) determine a unique pair of communication</li>
+</ul>
+</li>
+<li>socket between application layer and network layer</li>
+<li>push vs pull for sockets</li>
+</ul>
+<p>Non-persistent HTTP</p>
+<ul>
+<li>multiple parallel TCP connections, requires 2RTT before getting file, but allows for overall time reduction because parallel</li>
+</ul>
+<p>Always needs 2 RTT for the initial HTML file, then request objects (2RTT each vs 1RTT overall)</p>
+<p>FTP</p>
+<ul>
+<li>out of band protocol for file transfer via 2 diff TCP connections
+<ul>
+<li>HTTP and SMTP are in band</li>
+</ul>
+</li>
+<li>initiates ftp at 21, then uses port 20 for new TCP connection for file transfer (1 TCP per file transfer, non-persistent)</li>
+<li>FTP server keeps state (control info about user), hence limits number of ftp sessions that can coexist</li>
+<li>Out of band because of control TCP at a different port
+<ul>
+<li>Because it uses a separate connection for the control information</li>
+</ul>
+</li>
+</ul>
+<p>Mail</p>
+<ul>
+<li>Web-based mail, HTTP used to send mail to server and grab mail as well</li>
+</ul>
+<p>Root servers</p>
+<ul>
+<li>13 in Internet, in NA, operate like single server (each is cluster of replicated server)</li>
+<li>TLD for domains
+<ul>
+<li>Network Solutions for .com</li>
+<li>Educase for .edu</li>
+</ul>
+</li>
+</ul>
+<p>P2P</p>
+<ul>
+<li>u is basically uploading to internet</li>
+<li>d is download to local, usually d &gt; u</li>
+</ul>
+
+    </body>
+    </html>
