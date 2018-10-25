@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="lecture-5-sql">Lecture 5, SQL</h2>
+<p>SQL is the most common relational query language</p>
+<p>Based on set and relational algebra</p>
+<p><code>select * from relation where...</code></p>
+<p>does not remove duplicate by default</p>
+<ul>
+<li>(use <code>distinct</code>)</li>
+<li><code>all</code> does nothing lmao</li>
+</ul>
+<p><code>where</code> clauses must be already defined in the from relations</p>
+<p><code>not between a AND b</code></p>
+<p><code>from A, B</code> -&gt; attribute must be specified, cartesian product</p>
+<p><code>A natural join B</code> -&gt; will check duplicate attribute name if they equal</p>
+<p><code>union all, intersect all, minus(except) all</code></p>
+<ul>
+<li>remove duplicates</li>
+<li><code>(select *) minus (select *)</code></li>
+</ul>
+<p>Oracle: rename relation without <code>as</code> in <code>from</code></p>
+<ul>
+<li>correlation name, alias</li>
+</ul>
+<p><code>like</code> -&gt; string matching</p>
+<ul>
+<li><code>%</code> any substring</li>
+<li><code>_</code> single character</li>
+<li><code>like '20\%%' escape '\'</code> -&gt; specify escape character, all string starting with <code>20%</code></li>
+<li>2 single quote to include a single quote</li>
+</ul>
+<p><img src="file:///DB/images/6.PNG" alt="image"></p>
+<p><code>order by</code> default <code>asc</code></p>
+<p>Nested Subquery</p>
+<ul>
+<li><code>where clause</code> -&gt; must return appropriate value -&gt; single or set of values</li>
+<li>relation can also return null</li>
+<li><code>in, not in</code></li>
+<li><code>column &gt; some</code> -&gt; at least one</li>
+<li><code>column &gt; all</code> -&gt; all</li>
+<li><code>where exists</code> suquery can use the larger schema
+<ul>
+<li>returns if the subquery is not empty</li>
+</ul>
+</li>
+<li><code>where unique</code> return if the subquery has no duplicate</li>
+</ul>
+<p>Aggregation</p>
+<ul>
+<li>apply the where first, then the aggregate function</li>
+<li>can specify group by</li>
+<li>attribute in select clause must also appear in group by, group by attributes do not need to be in the select clause
+<ul>
+<li>if there's aggregation in the select clause it is fine</li>
+</ul>
+</li>
+</ul>
+<p>will first perform join then group by then aggregation</p>
+<p>Having</p>
+<ul>
+<li>
+<p>allow conditions on groups</p>
+</li>
+<li>
+<p>refers to group after the formation, must involve aggregate function of attributes in select or group by clause</p>
+</li>
+<li>
+<p>where -&gt; group -&gt; having</p>
+</li>
+</ul>
+<p><code>having count(*) &gt; 1</code></p>
+<p><code>from (select ....)</code> -&gt; the middle from relation is a derived relation</p>
+<ul>
+<li>oracle does not allow for derived to be reused, hence using <code>with</code> can work</li>
+<li><code>with Table (columns...) as (select...)</code></li>
+</ul>
+<h2 id="lecture-8-sql">Lecture 8, SQL</h2>
+<h3 id="ddl">DDL</h3>
+<ul>
+<li>Data Definition Language</li>
+<li>Allows for specifying
+<ul>
+<li>Schema</li>
+<li>type of values</li>
+<li>User defined types and domains</li>
+<li>Integrity Constraints</li>
+<li>Physical storage structure</li>
+<li>Indices</li>
+<li>Security + Auth</li>
+</ul>
+</li>
+</ul>
+<p>Creating Relations: use create table, need to specify <strong>domain type</strong></p>
+<p><code>alter table</code> can be used to modify attributes (<code>add</code>, <code>drop</code>, <code>modify</code>)</p>
+<p><code>drop table</code> delete all info, data and schema</p>
+<h3 id="integrity-constraints">Integrity Constraints</h3>
+<ul>
+<li>
+<p>These enforces valid values for attributes</p>
+</li>
+<li>
+<p>They <em>test</em> value and queries to makes ure the make sense</p>
+</li>
+<li>
+<p>Aside from basic type checking you can enforce more</p>
+</li>
+<li>
+<p><code>check</code> will specify a predicate</p>
+</li>
+<li>
+<p><code>primary key</code> also enforces as not null, <code>unique</code> allows for null</p>
+</li>
+<li>
+<p>can have many <em>candidate keys</em>, one of which is chosen as primary key</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> (
+  ...
+  primary <span class="hljs-keyword">key</span> (attr1, attr2),
+  foreign <span class="hljs-keyword">key</span> (<span class="hljs-keyword">attr</span>) <span class="hljs-keyword">references</span> <span class="hljs-keyword">Table</span> <span class="hljs-keyword">on</span> <span class="hljs-keyword">delete</span> ____ <span class="hljs-keyword">on</span> <span class="hljs-keyword">update</span> _____,
+  <span class="hljs-keyword">check</span> (______)
+)
+</div></code></pre>
+<ul>
+<li>Foreign key constraints
+<ul>
+<li>
+<p>must be primary key of referenced relation</p>
+</li>
+<li>
+<p>enforces <em>referential integrity</em></p>
+</li>
+<li>
+<p>What happens on delete?</p>
+<ul>
+<li>By default: disallow deletion</li>
+<li><code>cascade</code> - also delete all tuple that refers to the deleted entity (the referencer rows gets deleted)</li>
+<li><code>set default</code> gives it a default value</li>
+<li><code>set null</code></li>
+</ul>
+</li>
+<li>
+<p>What happens when a primary key id gets changed? Rejected</p>
+<ul>
+<li>can specify on update action (to propagate, use <code>cascade</code>)
+<ul>
+<li>Oracle does <strong>not</strong> support this</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>check</code> clause</p>
+<ul>
+<li>add constraint for an attribute that can contain an <em>arbitrary predicate</em>
+<ul>
+<li>similar to a <code>where</code> clause</li>
+</ul>
+</li>
+<li>Checked during an update</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="views">Views</h3>
+<ul>
+<li>gives you a way to hide data from users</li>
+<li><code>create view &lt;name&gt; as &lt;query expression&gt;</code></li>
+<li><code>drop view</code> to drop a view</li>
+<li>You can specify access to views</li>
+<li>some DB allow view to be stored and kept up to date if the relations change -&gt; <strong>Materialized Views</strong></li>
+<li>You can query them like a table</li>
+<li>insertion must add null to the ones that are non-existent
+<ul>
+<li>need to update original relations accordingly</li>
+</ul>
+</li>
+<li>View is only updatable if <em>all</em> of the conditions are satisfied
+<ul>
+<li><code>from</code> only has 1 relation</li>
+<li><code>select</code> only contains attribute name (no aggregate, distinct etc.)</li>
+<li>any not listed can be set to <code>null</code> (cannot have <code>not null</code>)</li>
+<li>does not have <code>group by</code> or <code>having</code></li>
+</ul>
+</li>
+</ul>
+<p><code>delete</code></p>
+<ul>
+<li>delete 0 or more tuples</li>
+<li>only done if no constraints violated</li>
+<li><code>where</code> can be as complex as <code>select</code> statements</li>
+</ul>
+<p><code>insert</code></p>
+<ul>
+<li>must match order of relation
+<ul>
+<li>you can specify attributes</li>
+</ul>
+</li>
+<li>insert from select statement is a thing</li>
+</ul>
+<p><code>having</code></p>
+<ul>
+<li>can only use attributes(columns) that already exists in the relations</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">update</span> <span class="hljs-keyword">Account</span>
+<span class="hljs-keyword">set</span> balance= <span class="hljs-keyword">case</span>
+  <span class="hljs-keyword">when</span> balance&lt;=<span class="hljs-number">10000</span> <span class="hljs-keyword">then</span> balance*<span class="hljs-number">1.05</span>
+  <span class="hljs-keyword">else</span> balance*<span class="hljs-number">1.06</span>
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<h3 id="exercises">Exercises</h3>
+<ul>
+<li>Exercise 1</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> title <span class="hljs-keyword">from</span> Book <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> Author <span class="hljs-keyword">where</span> lastName == <span class="hljs-string">'Piper'</span>;
+</div></code></pre>
+<ul>
+<li>Exercise 2</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> lastName, firstName 
+<span class="hljs-keyword">from</span> (
+  <span class="hljs-keyword">select</span> authorId, lastName, firstName <span class="hljs-keyword">from</span> Author <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> Book <span class="hljs-keyword">where</span> subject=<span class="hljs-string">'Art'</span>
+  <span class="hljs-keyword">intersect</span>
+  <span class="hljs-keyword">select</span> authorId, lastName, firstName <span class="hljs-keyword">from</span> Author <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> Book <span class="hljs-keyword">where</span> subject=<span class="hljs-string">'Business'</span>
+);
+
+or
+
+<span class="hljs-keyword">select</span> lastName, firstName <span class="hljs-keyword">from</span> 
+  Author <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> Book 
+  <span class="hljs-keyword">where</span> 
+    subject=<span class="hljs-string">'Art'</span> 
+    <span class="hljs-keyword">and</span> authorId <span class="hljs-keyword">in</span> (
+      <span class="hljs-keyword">select</span> authorId, lastName, firstName <span class="hljs-keyword">from</span> Author <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> Book <span class="hljs-keyword">where</span> subject=<span class="hljs-string">'Business'</span>
+    );
+</div></code></pre>
+<ul>
+<li>Exercise 4</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> lastName, firstName 
+  <span class="hljs-keyword">from</span> Author 
+  <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> Book
+  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> aid, lastName, firstName 
+  <span class="hljs-keyword">having</span> <span class="hljs-keyword">count</span>(<span class="hljs-keyword">distinct</span> subject) = <span class="hljs-number">3</span>
+
+  can also <span class="hljs-keyword">do</span> <span class="hljs-keyword">set</span>! 
+</div></code></pre>
+<ul>
+<li>Exercise 5</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> cid, lastName, <span class="hljs-keyword">count</span> (*) <span class="hljs-keyword">as</span> numOrder 
+  <span class="hljs-keyword">from</span> Customer 
+  <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> BookOrder 
+  <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cid, lastName 
+  <span class="hljs-keyword">having</span> <span class="hljs-keyword">count</span>(<span class="hljs-keyword">oid</span>) &gt; <span class="hljs-number">10</span>
+</div></code></pre>
+<ul>
+<li>Exercise 6</li>
+</ul>
+<pre class="hljs"><code><div>with tmp (cid, totalQuantity) as 
+  (<span class="hljs-keyword">select</span> cid, <span class="hljs-keyword">sum</span>(quantity) <span class="hljs-keyword">as</span> totalQuantity <span class="hljs-keyword">from</span> OrderDetails
+    <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> BookOrder 
+    <span class="hljs-keyword">on</span> OrderDetails.oid = BookOrder.cid 
+    <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cid)
+<span class="hljs-keyword">select</span> cid, lastName, totalQuantity 
+  <span class="hljs-keyword">from</span> Customer 
+  <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> tmp
+  <span class="hljs-keyword">on</span> tmp.cid = Customer.cid 
+  <span class="hljs-keyword">where</span> totalQuantity = 
+    (<span class="hljs-keyword">select</span> <span class="hljs-keyword">max</span>(totalQuantity) <span class="hljs-keyword">from</span> tmp)
+</div></code></pre>
+
+    </body>
+    </html>
