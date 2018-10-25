@@ -52,3 +52,34 @@ Constraint: Key
   - enforced by DBMS
   - if candidate key is a set -> composite key
 
+Strong Entity: has a primary key
+
+Weak Entity: does not have a primary key (associated with a strong entity - identifying entity)
+- discriminator helping to differentiate (along with the identifying relationship)
+
+
+Surrogate Key - new attribute added to be the primary key of entity
+- invisible to user
+- make weak entity strong
+
+Coverage
+- Disjointness:
+  - overlapping (o) -> super-class can relate to more than one subclass
+  - disjoint (d) -> one or the other but not both
+- Completeness
+  - partial (single line) the super class can exist on its own (non-abstract class)
+  - total (double line) the super class is abstract.
+
+![img](DB/images/3.png)
+- if min-card = 0 -> partial participation, > 0 -> total
+- max-card -> cardinality constraint: 1->1, 1->n, n->1, n->m
+
+Exclusion
+- one or the other but not both! (linked by a --(+)--)
+
+Choosing between entity and attribute:
+- entity: severy properties can be associated
+- attribute -> concept has no property of interest
+- relationship: not a distinct application, no interest
+
+Note: if the same relationship instance need to appear 2 times -> switch to Entity instead of relationship
