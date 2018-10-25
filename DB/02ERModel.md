@@ -83,3 +83,10 @@ Choosing between entity and attribute:
 - relationship: not a distinct application, no interest
 
 Note: if the same relationship instance need to appear 2 times -> switch to Entity instead of relationship
+
+Choosing between strong and weak entity
+- Strong: uniquely identified in domain
+- Weak: no unique identifier
+
+![image](DB/images/4.PNG)
+
