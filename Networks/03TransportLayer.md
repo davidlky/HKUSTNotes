@@ -197,3 +197,11 @@ Sender events
   - if sender receives 3 ACKs for same data -> resent unacked segment with smallest sequence, don't wait for timeout
 - TCP rarely go to timeout (performance will be too poor if it does often)
   - timeout basically means nothing is received! way worse
+
+
+### 3.5 Connection Oriented Transport: TCP
+- point to point, reliable byte stream and pipelined (has a window size)
+- flow is controlled: sender will not overwhelm the receiver
+- full duplex: bidirectional data, MSS (Max Segment size)
+- handshaking required
+
