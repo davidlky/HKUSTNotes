@@ -1,3 +1,70 @@
+## Lecture 5, SQL
+SQL is the most common relational query language
+
+Based on set and relational algebra
+
+`select * from relation where...`
+
+does not remove duplicate by default
+- (use `distinct`)
+- `all` does nothing lmao
+
+`where` clauses must be already defined in the from relations
+
+`not between a AND b`
+
+`from A, B` -> attribute must be specified, cartesian product
+
+`A natural join B` -> will check duplicate attribute name if they equal
+
+`union all, intersect all, minus(except) all`
+- remove duplicates
+- `(select *) minus (select *)`
+
+Oracle: rename relation without `as` in `from`
+- correlation name, alias
+
+`like` -> string matching
+- `%` any substring
+- `_` single character
+- `like '20\%%' escape '\'` -> specify escape character, all string starting with `20%`
+- 2 single quote to include a single quote
+
+![image](/DB/images/6.PNG)
+
+`order by` default `asc`
+
+Nested Subquery
+- `where clause` -> must return appropriate value -> single or set of values
+- relation can also return null
+- `in, not in`
+- `column > some` -> at least one
+- `column > all` -> all
+- `where exists` suquery can use the larger schema
+  - returns if the subquery is not empty
+- `where unique` return if the subquery has no duplicate
+
+
+Aggregation
+- apply the where first, then the aggregate function
+- can specify group by
+- attribute in select clause must also appear in group by, group by attributes do not need to be in the select clause
+  - if there's aggregation in the select clause it is fine
+
+will first perform join then group by then aggregation
+
+Having
+- allow conditions on groups
+- refers to group after the formation, must involve aggregate function of attributes in select or group by clause
+
+- where -> group -> having
+
+`having count(*) > 1`
+
+`from (select ....)` -> the middle from relation is a derived relation
+- oracle does not allow for derived to be reused, hence using `with` can work
+- `with Table (columns...) as (select...)`
+
 ## Lecture 8, SQL
 ### DDL
 - Data Definition Language
@@ -24,6 +91,15 @@ Creating Relations: use create table, need to specify **domain type**
 - `primary key` also enforces as not null, `unique` allows for null
 
 - can have many *candidate keys*, one of which is chosen as primary key
+
+```sql
+create table (
+  ...
+  primary key (attr1, attr2),
+  foreign key (attr) references Table on delete ____ on update _____,
+  check (______)
+)
+```
 
 - Foreign key constraints
   - must be primary key of referenced relation
@@ -70,7 +146,15 @@ Creating Relations: use create table, need to specify **domain type**
 
 `having`
 - can only use attributes(columns) that already exists in the relations
-- 
+
+
+```sql 
+update Account
+set balance= case
+  when balance<=10000 then balance*1.05
+  else balance*1.06
+end;
+```
 
 
 ### Exercises

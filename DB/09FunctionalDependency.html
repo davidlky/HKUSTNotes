@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre:not(.hljs), .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre:not(.hljs), .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre:not(.hljs), .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h3 id="lecture-9-functional-dependency">Lecture 9, Functional Dependency</h3>
+<p><code>X-&gt;Y</code>, X is determinant set, Y is dependent set</p>
+<ul>
+<li>
+<p>At most one value of Y for any X</p>
+</li>
+<li>
+<p>eg. a supervisor can only have 1 specialization, but many supervisor can specialize at the same thing</p>
+</li>
+<li>
+<p>If Y is a subset of X, then it is trivial</p>
+</li>
+<li>
+<p>We care about non-trivial ones</p>
+<ul>
+<li>given as constraints</li>
+</ul>
+</li>
+<li>
+<p>Concept of a Key in a table</p>
+<ul>
+<li><code>primary key -&gt; all attr.</code></li>
+</ul>
+</li>
+<li>
+<p>Any set of attribute that determines whole tuple -&gt; <strong>SuperKey</strong></p>
+</li>
+<li>
+<p>Minimal set that determines entire tuple is <strong>candidate key</strong></p>
+<ul>
+<li>multiple, choose one as primary key</li>
+</ul>
+</li>
+<li>
+<p>Reflexivity, Augmentation and Transitivity are sound and complete</p>
+</li>
+<li>
+<p>Attribute Set</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">X^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span> -&gt; set of attr that can be functionally determined by X under F</li>
+<li>include itself, and what it can determine</li>
+<li>Algo: Check one level at a time</li>
+<li>Can be used to check for super key</li>
+</ul>
+</li>
+</ul>
+<p>Redundancy: if can be inferred, then remove!</p>
+<p>Canonical Order</p>
+<ul>
+<li>no redundancy, every other set would be the same</li>
+<li>left side of each functional dependency is unique (no duplicate left side!)</li>
+<li>find and replace, use union rule or find extraneous ones</li>
+</ul>
+<h2 id="lecture-10-cont">Lecture 10, cont.</h2>
+<p>Prime Attribute - part of any candidate key (any set that minimally determines hole tuple)</p>
+<p>Partial: VZ -&gt; A, Z-&gt;A is partial</p>
+<p>Transitive: X-&gt;Y, X-&gt;A Y-&gt;A is transitive</p>
+<p>Normalization: reduce redundancy, should be lossless</p>
+<ul>
+<li>basically decomposition</li>
+</ul>
+<p>Normal form does not mean good design!</p>
+<p>Design guidelines:</p>
+<ol>
+<li>Clear Semantics for Attributes</li>
+</ol>
+<ul>
+<li>Design so its easy to define a schema meaning, attrs should be related</li>
+<li>Easy to explain schema = good!</li>
+</ul>
+<ol start="2">
+<li>Minimize Use of Null Values</li>
+</ol>
+<ul>
+<li>If not relatable, there will be a bunch of null value, which should be avoided</li>
+</ul>
+<ol start="3">
+<li>Minimize Redundancy</li>
+</ol>
+<ul>
+<li>lessen space needed</li>
+</ul>
+<ol start="4">
+<li>Lossless Decomp</li>
+</ol>
+<ul>
+<li>The common attribute between the decomposed relations must be a superkey for R<sub>1</sub> or R<sub>2</sub></li>
+<li>lossless join back to initial relation</li>
+</ul>
+<ol start="5">
+<li>Preserve Functional Dependencies</li>
+</ol>
+<ul>
+<li>if any gets lost, then things are harder to enforce</li>
+<li>the decomp should allow for FD checks to persist</li>
+</ul>
+<p>First Normal Form: all attributes are atomic</p>
+<ul>
+<li>no multi valued or composite attributes</li>
+<li>Relation Schema are 1NF by default</li>
+</ul>
+<p>Second Normal Form: non-prime attributes are fully functionally dependent on every candidate key.</p>
+<ul>
+<li>subset of candidate key cannot determine a non-prime attribute</li>
+<li><strong>No partial dependency</strong>, where a column can deend on one of the primary keys
+<ul>
+<li>if {X, Y} are candidate keys, X -&gt; A where X is a proper subset and A is not a prime attribute would fail it</li>
+<li>if transitive (A-&gt;B where A, B are both non-prime, then its still fine)</li>
+</ul>
+</li>
+<li>X -&gt; A, X is not proper subset (missing at least 1 from whole set) or A is prime</li>
+</ul>
+<p>Proper subset iff every element but at least one in the subset</p>
+<p>Third Normal Form: every non-prime attribute of R is nontransitively dependent on every candidate key of R</p>
+<ul>
+<li>basically, the all FD of X -&gt; A, X is super key or A is prime
+<ul>
+<li>if X -&gt;A, X must be a superkey of a schema, or A must be a part of candidate keys</li>
+</ul>
+</li>
+</ul>
+<p>Algo:</p>
+<ul>
+<li>create a relation for each FD</li>
+<li>if no schema has a candidate key for R (so find the candidate key!)</li>
+<li>choose an candidate key, and add that relation</li>
+</ul>
+<p>Redundancy still exist in 3F, in opposite direction</p>
+<p><img src="file:///DB/images/7.PNG" alt="image"></p>
+<h2 id="lecture-11-part-3">Lecture 11, Part 3</h2>
+<p><img src="file:///DB/images/8.PNG" alt="image"></p>
+<p>First Normal Form:  The information is stored in a relational table and each column contains atomic values, and there are not repeating groups of columns.</p>
+<p>Second Normal Form: The table is in first normal form and all the columns depend on the table’s primary key.</p>
+<p>Third Normal Form: the table is in second normal form and all of its columns are not transitively dependent on the primary key</p>
+<p>BCNF - Boyce-Codd</p>
+<ul>
+<li>Basically, the LHS <strong>has</strong> to be a super-key, no extraneous on RHS</li>
+<li>No redundancy</li>
+<li>has to be 3NF first</li>
+<li>BEST NORMAL FORM</li>
+<li>always a lossless conversion</li>
+<li>All FD may <em>not</em> bre preserved</li>
+<li>Checking F is sufficient (no need for F+), check if the super key is the same
+<ul>
+<li>for derived schemas, check F+</li>
+</ul>
+</li>
+</ul>
+<p>Algorithm</p>
+<ul>
+<li>start with initial schema</li>
+<li>for each R in the schemas,  if X-&gt;Y violate BCNF,
+<ul>
+<li>take away table, add schema of old table with out Y and add (X, Y) -&gt; X is now a candidate key</li>
+</ul>
+</li>
+</ul>
+<p>to see if something is BCNF using <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathit" style="margin-right:0.13889em;">F</span></span></span></span> is fine, for actual decomposition, need <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></p>
+<p>Sometimes updating BCNF is inefficient</p>
+<ul>
+<li>you can go back to 3NF, which cost more space</li>
+<li>you can use a materialized view, just less prone to errors</li>
+</ul>
+<p>Test:</p>
+<ul>
+<li>For every attribute in <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, check if <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">X^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span> include no attribute of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub><mo>−</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">R_i-X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathit" style="margin-right:0.07847em;">X</span></span></span></span> or all attributes of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+
+    </body>
+    </html>
