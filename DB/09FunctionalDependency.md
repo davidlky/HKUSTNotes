@@ -70,7 +70,7 @@ Second Normal Form: non-prime attributes are fully functionally dependent on eve
 Proper subset iff every element but at least one in the subset
 
 
-Third Normal Form: every non-prime attribute of R is nontransitively dependent on every candidate key of R
+Third Normal Form: every non-prime attribute of R is non-transitively dependent on every candidate key of R
 - basically, the all FD of X -> A, X is super key or A is prime
   - if X ->A, X must be a superkey of a schema, or A must be a part of candidate keys
 
