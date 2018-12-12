@@ -143,6 +143,35 @@ Selective Repeat
 dilemma:
 - when seq number and window are the same size, then possible to have duplicate data accepted as the new one.
 
+### 3.5 Connection Oriented Transport: TCP
+- point to point, reliable byte stream and pipelined (has a window size)
+- flow is controlled: sender will not overwhelm the receiver
+- full duplex: bidirectional data, MSS (Max Segment size)
+- handshaking required
+
+![image](./images/4.png)
+
+- Sequence number: byte-stream number of first byte in segment's data
+- Ack number: sequence # of next byte expected
+  - cumulative ACK
+- Out of order is up to implementor
+
+TCP round trip time/timeout
+- timeout > RTT, but need to estimate RTT
+- SampleRTT -> measured time from segment until ACK receipt
+  - ignore re-transmission
+- Average several recent measurement, not just current
+  - exponential weighted moving average
+  - $EstimatedRTT = (1 - \alpha) \times EstimatedRTT + \alpha \times SampleRTT$
+  - usually $\alpha = 0.125$
+- Timeout interval: 
+  - $EstimatedRTT + Safety Margin$
+  - more variation = larger margin
+  - Safety Margin (Deviation)
+    - $DevRTT = (1- \beta) \times DevRTT + \beta \times |SampleRTT - EstimatedRTT|$
+    - usually $\beta = 0.25$
+  - TimeoutInterval = EstimatedRTT + 4*DevRTT
+
 ### Connection Oriented Transport: TCP
 - point to point (one sender, receiver)
 - reliable, in-order byte stream
@@ -186,11 +215,11 @@ TCP round trip time, timeout
 Sender events
 - data received from app:
   - create segment with #, start timer (oldest unacked segment)
-  - expiration interval established
-    - on timeout: retransmit segment that caused timeout, restart timer
-  - ack received
-    - if ack is for previously unacked segments: update what is known to be acked, start timer for unacked segments.
-  - duplicate acks for when the packets arrived out of order, the duplicate ack will ask for the next one in order.
+- expiration interval established
+  - on timeout: retransmit segment that caused timeout, restart timer
+- ack received
+  - if ack is for previously unacked segments: update what is known to be acked, start timer for unacked segments.
+- duplicate acks for when the packets arrived out of order, the duplicate ack will ask for the next one in order.
 - detect lose segment via duplicate ACK -> sender often send many segments back to back
   - if lost, there will likely be many duplicates
 - TCP fast retransmit
@@ -199,9 +228,99 @@ Sender events
   - timeout basically means nothing is received! way worse
 
 
-### 3.5 Connection Oriented Transport: TCP
-- point to point, reliable byte stream and pipelined (has a window size)
-- flow is controlled: sender will not overwhelm the receiver
-- full duplex: bidirectional data, MSS (Max Segment size)
-- handshaking required
+Note: since ACK are cumulative, always send what is next according to ACK
+
+#### TCP receiver
+Ack generation
+![image](./images/5.png)
+- if all in order, then wait before sending ACK (prevent asking for things on their way)
+- if one has ACK pending, but in order, send ACK for in order segments
+- Gap detected, send a duplicate ACK saying what is needed
+- fills gap, send new ACK if segment filled lower end of gap
+
+
+TCP fast retransmit
+- time our period are long, so we don't want to wait
+- detect lost segment via duplicate ACKs
+  - likely sending many packets at same time, hence, if duplicates come back -> seg lost
+- if 3 ACK for same data (**triple duplicate acks**)
+  - resend smallest unacked segment
+
+TCP flow control
+- receiver controls the sender, so sender does not overflow receiver's buffer
+- receiver tells sender how much free buffer space available `rwnd`
+  - in header, default 4KB
+  - sender limits amount of unacked data based on `rwnd` (in flight should not overcrowd the `rwnd` space)
+
+Connection Management
+- before data exchange, perform "handshake"
+  - agree on parameters with each other
+
+will 2 way handshake always work? No... because of delays, re-transmission etc.
+
+3 way handshake
+1. choose a initial sequence number, x, send TCP SYN msg
+2. choose a initial sequence number, y, send TCP SYNACK, ACKNum = x + 1; 
+3. seeing the number is x, send ACKNum y+1 (along with server data and now good to go)
+
+TCP: closing connection
+- send TCP segment with `FIN` bit `1`
+- respond to `FIN` with `ACK`
+  - simultaneous FIN can be handled
+
+![image](./images/6.png)
+
+### Congestion Control
+- too many sources sending too much data too fast for **network** to handle
+  - different from flow (sender overwhelm receiver)
+
+![image](./images/7.png)
+
+![image](./images/8.png)
+
+![image](./images/9.png)
+
+Problem: when resources are being shared, as one input increases and gets dropped more, then it will cause other sources to have less throughput
+- higher waste too when packets are dropped
+
+### TCP Congestion control
+Sender increase transmission rate (window size), probing for usable bandwidth until loss occurs
+- additive  increase (increase `cwnd` by 1 MSS every RTT until a loss)
+- multiplicative decrease (cut by half during loss)
+
+`cwnd` current window shize - dynamic, function of network congestion
+
+![image](./images/10.png)
+
+initial rate is 1, then progressively (exp) get higher
+
+TCP - detecting and reacting to loss
+- timeout -> `cwnd` = 1 MSS
+  - window grows exponentially like slow start, until threshold, then linear like before
+- fast transmission (3ACKS)
+  - RENO -> cut in half window, grow linearly
+  - TAHOE -> set to 1
+
+Switching from slow start to CA
+- threshold set as half of value before timeout
+
+TCP throughput
+- function of window size and RTT
+  - ignore slow start, assume always data to send
+- average window size is 3/4 W
+- average throughput then is 3/4 per RTT
+
+
+TCP has innovated for higher speeds
+
+Fairness: K TCP sessions should have R/K average rate (fair)
+- because of additive increase an decrease allow for fair competition
+- fairness with UDP is not guarenteed, does not matter to them (for streaming ie)
+- parallel TCP connection can break this (ask for a lot of connection = higher rate)
+  
+Explicit Congestion Notification (ECN)
+- network assisted congestion control
+  - 2 bits in IP header (ToS field) marked by network router to show congestion
+  - congestion indication carried to receiving host, receiver sets ECE bit to notify sender of congestion (passed through network)
+
 
